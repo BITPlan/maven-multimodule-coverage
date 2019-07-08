@@ -1,3 +1,4 @@
+https://blog.doubleslash.de/code-coverage-reports-mit-maven-in-multi-modul-projekten/
 # Coverage-Reports mit Maven in Multi-Modul-Projekten
 
 Beispielkonfiguration für die Generierung von Coverage-Reports in einem Maven-Projekt, das aus mehreren Modulen 
