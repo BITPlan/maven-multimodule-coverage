@@ -1,52 +1,46 @@
-https://blog.doubleslash.de/code-coverage-reports-mit-maven-in-multi-modul-projekten/
+see
+- https://blog.doubleslash.de/code-coverage-reports-mit-maven-in-multi-modul-projekten/
+- http://wiki.bitplan.com/index.php/Jacoco_maven_multi_module_code_coverage
 
 [![Travis (.org)](https://img.shields.io/travis/BITPlan/maven-multimodule-coverage.svg)](https://travis-ci.org/BITPlan/maven-multimodule-coverage)
 [![codecov](https://codecov.io/gh/BITPlan/maven-multimodule-coverage/branch/junit-4/graph/badge.svg)](https://codecov.io/gh/BITPlan/maven-multimodule-coverage/branch/junit-4)
 
 [![BITPlan](http://wiki.bitplan.com/images/wiki/thumb/3/38/BITPlanLogoFontLessTransparent.png/198px-BITPlanLogoFontLessTransparent.png)](http://www.bitplan.com)
 
+# Coverage-Reports with Maven in Multi-Modul-Projects
 
-https://codecov.io/gh/BITPlan/
-
-# Coverage-Reports mit Maven in Multi-Modul-Projekten
-
-Beispielkonfiguration für die Generierung von Coverage-Reports in einem Maven-Projekt, das aus mehreren Modulen
-besteht. Für Unit-Tests und Integrationstests werden Coverage-Reports erstellt, die jeweils über alle Module
+This is an example configuration for the generation of coverage reports in a maven project consisting of
+multiple modules. Coverage reports are generated for unit and integration tests which are aggregated over all modules.
 aggregiert sind.
 
-Darüber hinaus wird ein Overall-Report erzeugt, der die Gesamt-Testabdeckung beinhaltet (Unit- und
-Integrationstests zusammen).
+You also get an overall - report showing the total test coverage over unit and integration tests.
 
-Für die Messung der Testabdeckung wird das
-[JaCoCo-Maven-Plugin](http://www.eclemma.org/jacoco/trunk/doc/maven.html) verwendet.
+To measure the test coverage the
+[JaCoCo-Maven-Plugin](http://www.eclemma.org/jacoco/trunk/doc/maven.html) is used.
 
-## Laufzeitumgebung ##
-
-Erstellt und getestet wurde dieses Projekt mit folgender Laufzeitkonfiguration:
+## Enviroment ##
+The project was created and tested with the following environment:
 
 - Maven 3.5
 - JUnit 4
 
-Eine Version dieses Beispiels für JUnit 5 befindet sich
-[hier](https://github.com/doubleSlashde/maven-multimodule-coverage/tree/master).
+Another version of this project for JUnit 5 is available in the
+[master branch (german)](https://github.com/doubleSlashde/maven-multimodule-coverage/tree/master).
 
-## Erstellung der Reports ##
+## Creation of the reports ##
+The reports are automatically created during the test execution. An aggregated report for all modules is
+created running the Unit-Tests during maven's `test`-phase, by giving the command `mvn test`.
 
-Die Reporterzeugung erfolgt automatisch während der Testausführung. Ein über alle Module aggregierter Coverage-Report
-für die Unit-Tests wird beim Durchlaufen von Mavens `test`-Phase erzeugt, also z.B. beim Aufruf von `mvn test`.
+The reports for the integration tests and the aggregated report are created  during the  `verify`-Phase by e.g. starting the  `mvn verify` command. This is also true for later phases after `verify`
+e.g.  `mvn install` or `mvn deploy`.
 
-Der Report für die Integrationstests sowie der Gesamtreport werden in der `verify`-Phase generiert, also wenn
-z.B. `mvn verify` ausgeführt wird. Dies gilt natürlich auch für den Aufruf von späteren Phasen, denen die Phase `verify`
-vorausgeht, also z.B. für `mvn install` oder `mvn deploy`.
+## Storagepath for Reports ##
 
-## Ablageort der Reports ##
+The Coverage-Reports (HTML) are located in the  `site`-folder as a subfolder of `target` of the module `coverage`:
+- `coverage/target/site/jacoco-aggregate-ut/index.html`: Coverage-Report of Unit-Tests
+- `coverage/target/site/jacoco-aggregate-it/index.html`: Coverage-Report of Integrationtests
+- `coverage/target/site/jacoco-aggregate-all/index.html`: Aggregated Totalreport of Unit- and Integrationstests
 
-Die Coverage-Reports (HTML) werden im `site`-Ordner unterhalb von `target` des Moduls `coverage` abgelegt:
-- `coverage/target/site/jacoco-aggregate-ut/index.html`: Coverage-Report der Unit-Tests
-- `coverage/target/site/jacoco-aggregate-it/index.html`: Coverage-Report der Integrationtests
-- `coverage/target/site/jacoco-aggregate-all/index.html`: Kumulierter Gesamtreport der Unit- und Integrationstests
-
-## Wichtig! ##
-
-Wird dem Projekt ein neues Modul hinzugefügt, muss dieses in der `pom.xml` des `coverage`-Moduls als Dependency
-hinzugefügt werden. _Ansonsten wird die Testabdeckung des neuen Moduls in den aggregierten Reports nicht berücksichtigt_!
+## Important when adding modules! ##
+The modules you'd like to get reports for needed to be declared as dependencies in the  `pom.xml` of the `coverage`-Module.
+Otherwise the module's coverage report will not be integrated into the aggregated report.
