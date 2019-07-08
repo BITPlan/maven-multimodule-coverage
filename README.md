@@ -1,5 +1,6 @@
 https://blog.doubleslash.de/code-coverage-reports-mit-maven-in-multi-modul-projekten/
 
+[![Travis (.org)](https://img.shields.io/travis/BITPlan/maven-multimodule-coverage.svg)](https://travis-ci.org/BITPlan/maven-multimodule-coverage)
 [![codecov](https://codecov.io/gh/BITPlan/maven-multimodule-coverage/branch/junit-4/graph/badge.svg)](https://codecov.io/gh/BITPlan/maven-multimodule-coverage/branch/junit-4)
 
 [![BITPlan](http://wiki.bitplan.com/images/wiki/thumb/3/38/BITPlanLogoFontLessTransparent.png/198px-BITPlanLogoFontLessTransparent.png)](http://www.bitplan.com)
